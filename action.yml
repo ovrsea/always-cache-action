@@ -14,10 +14,6 @@ inputs:
   upload-chunk-size:
     description: 'The chunk size used to split up large files during upload, in bytes'
     required: false
-  upload-on:
-    description: 'When to upload cache, choose between "success", "failure" or "always"'
-    required: false
-    default: 'success'
 outputs:
   cache-hit:
     description: 'A boolean value to indicate an exact match was found for the primary key'
@@ -25,7 +21,7 @@ runs:
   using: 'node16'
   main: 'dist/restore/index.js'
   post: 'dist/save/index.js'
-  post-if: '${{ inputs.upload-on }}()'
+  post-if: 'always()'
 branding:
   icon: 'archive'
   color: 'gray-dark'
